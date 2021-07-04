@@ -1,10 +1,10 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class ProductTags extends Model{}
+class ProductTag extends Model{}
 
 // Define table columns and configs
-ProductTags.init(
+ProductTag.init(
     {
         // Table column definitions go here
 
@@ -22,9 +22,15 @@ ProductTags.init(
         // Define username column
         product_id: {
             type: DataTypes.INTEGER,
-            allowNull: false,
             references: {
                 model: 'product',
+                key: 'id'
+            }
+        },
+        tag_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'tag',
                 key: 'id'
             }
         }
@@ -39,8 +45,8 @@ ProductTags.init(
             // User underscores instead of camel casing
             underscored: true,
             // Make it so our model name stays lowercase in db
-            modelname: 'productTags'
+            modelname: 'product_tag'
         }
     );
 
-    module.exports = ProductTags;
+    module.exports = ProductTag;
